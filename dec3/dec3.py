@@ -19,21 +19,14 @@ def part1(file):
 def part2(file):
     alpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     sum = 0
-    groups = []
-    group = []
-    c = 0
-    for bag in file:
-        group.append(bag[:-1])
-        c+=1
-        if(c == 3):
-            groups.append(group)
-            group = []
-            c = 0
-    for g in groups:
-        for item in g[0]:
-            if item in g[1] and item in g[2]:
+    i = 0
+    while i < len(file):
+        g0, g1, g2 = file[i:i+3]
+        for item in g0:
+            if item in g1 and item in g2:
                 sum += alpha.find(item) + 1
                 break
+        i += 3
     print(sum)
 
 if __name__ == '__main__':
